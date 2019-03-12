@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import spinner from './spinner6.gif';
 
 export default ()=> {
