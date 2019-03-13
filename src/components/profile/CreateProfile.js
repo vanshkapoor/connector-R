@@ -5,6 +5,9 @@ import Textfield from '../common/textfield';
 import Textarea from '../common/textarea';
 import Selectiontext from '../common/selectiontext';
 import Inputgroup from '../common/inputgroup';
+import {createProfile} from '../../actions/profileActions';
+import {withRouter} from 'react-router-dom';
+
 
 class CreateProfile extends Component {
   constructor(props){
@@ -32,10 +35,35 @@ onChange =(e) =>{
         [e.target.name]:e.target.value
     })
 }
+
+componentWillReceiveProps(nextProps)
+{
+    if(nextProps.errors){
+        this.setState({errors :nextProps.errors});
+    }
+}
+
+
 onSubmit =(e) =>{
     e.preventDefault();
+    const profile = {
+            handle:this.state.handle,
+            location:this.state.location,
+            company:this.state.company,
+            website:this.state.website,
+            status:this.state.status,
+            skills:this.state.skills,
+            bio:this.state.bio,
+            githubusername:this.state.githubusername,
+            twitter:this.state.twitter,
+            facebook:this.state.facebook,
+            linkedin:this.state.linkedin,
+            youtube:this.state.youtube,
+            instagram:this.state.instagram
+    }
 
-    console.log("submit");
+    
+    this.props.createProfile(profile,this.props.history);
 }
 togglehandler =() =>{
     const show = this.state.displaySocialInputs;
@@ -186,7 +214,10 @@ togglehandler =() =>{
                             error={ this.state.errors.bio } 
                         />
                         <div className="mb-3">
-                            <button onClick={this.togglehandler} className="btn btn-light">
+                            <button 
+                            type="button"
+                            onClick={this.togglehandler} 
+                            className="btn btn-light">
                                 Add social network links
                             </button>
                             <span className="text-muted ">Optional</span>
@@ -205,7 +236,8 @@ togglehandler =() =>{
 
 CreateProfile.propTypes = {
     profile:PropTypes.object.isRequired,
-    errors:PropTypes.object.isRequired
+    errors:PropTypes.object.isRequired,
+    createProfile:PropTypes.func.isRequired
 }
 
 
@@ -214,4 +246,4 @@ const mapStateToProps = state =>({
     errors:state.errors
 });
 
-export default connect(mapStateToProps)(CreateProfile);
+export default connect(mapStateToProps,{createProfile})(withRouter(CreateProfile));
