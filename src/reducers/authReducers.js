@@ -1,5 +1,5 @@
  //import {GET_ERRORS} from '../actions/types';
- import {SET_CURRENT_USER, LOGOUT_USER} from '../actions/types';
+ import {SET_CURRENT_USER, LOGOUT_USER,DELETE} from '../actions/types';
 
 const initialState = {
     isAuthenticated:false,
@@ -19,6 +19,12 @@ export default function(state = initialState,action){
              isAuthenticated: true,//!isEmpty(action.payload),
              user: action.payload
          };
+         case DELETE:
+         return{
+             ...state,
+             isAuthenticated:false,
+             user:action.payload
+         }
          case LOGOUT_USER:
          return{
              ...state,

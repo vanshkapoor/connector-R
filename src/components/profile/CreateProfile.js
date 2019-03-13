@@ -30,11 +30,14 @@ class CreateProfile extends Component {
         errors:{}
     }
 }
+
+
 onChange =(e) =>{
     this.setState({
         [e.target.name]:e.target.value
-    })
+    });
 }
+
 
 componentWillReceiveProps(nextProps)
 {
@@ -62,9 +65,9 @@ onSubmit =(e) =>{
             instagram:this.state.instagram
     }
 
-    
     this.props.createProfile(profile,this.props.history);
 }
+
 togglehandler =() =>{
     const show = this.state.displaySocialInputs;
     this.setState({
