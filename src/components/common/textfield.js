@@ -24,6 +24,7 @@ const Textfield = ({
           name={name}
           value={value}
           onChange={onChange}
+          disabled={disabled}
         />
         {{info} && <div className="form-text text-muted">{info}</div>}
         {{error} && <div className="invalid-feedback">{error}</div>}

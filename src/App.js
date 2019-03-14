@@ -18,6 +18,8 @@ import Register from './components/auth/register';
 import Dashboard from './components/dashboard/dashboard';
 import CreateProfile from './components/profile/CreateProfile';
 import editProfile from './components/edit profile/EditProfile';
+import Addexperience from './components/add-credentials/addexperience';
+
 
 if(localStorage.jwttoken){
 
@@ -57,6 +59,9 @@ class App extends Component {
           </Switch>
           <Switch>
           <PrivateRoute exact path="/edit-profile" component = {editProfile} />
+          </Switch>
+          <Switch>
+          <PrivateRoute exact path="/add-experience" component = {Addexperience} />
           </Switch>
         </div>
         <Footer/>
