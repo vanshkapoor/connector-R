@@ -43,6 +43,17 @@ export const addExperience =(expdata,history) =>dispatch =>{
     }))
 }
 
+//add education
+export const addEducation =(edudata,history) =>dispatch =>{
+    axios.post('/api/profile/education',edudata)
+    .then(res => history.push('/dashboard'))
+    .catch(err => dispatch({
+        type:GET_ERRORS,
+        payload:err.response.data
+    }))
+}
+
+
 
 
 
