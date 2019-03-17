@@ -20,7 +20,7 @@ import CreateProfile from './components/profile/CreateProfile';
 import editProfile from './components/edit profile/EditProfile';
 import Addexperience from './components/add-credentials/addexperience';
 import Addeducation from './components/add-credentials/addeducation';
-
+import Profiles from './components/profiles/profiles';
 
 if(localStorage.jwttoken){
 
@@ -52,6 +52,7 @@ class App extends Component {
         <div className="container">
           <Route exact path="/login" component = {Login} />
           <Route exact path="/register" component = {Register} />
+          <Route exact path="/profiles" component = {Profiles} />
           <Switch>
           <PrivateRoute exact path="/dashboard" component = {Dashboard} />
           </Switch>
@@ -67,6 +68,7 @@ class App extends Component {
           <Switch>
           <PrivateRoute exact path="/add-education" component = {Addeducation} />
           </Switch>
+          
         </div>
         <Footer/>
       </div>

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_PROFILE, PROFILE_LOADING, GET_ERRORS ,CLEAR_CURRENT_PROFILE,DELETE} from './types';
+import { GET_PROFILE, PROFILE_LOADING, GET_ERRORS ,CLEAR_CURRENT_PROFILE,DELETE, GET_PROFILES} from './types';
 
 
 
@@ -70,6 +70,22 @@ export const DeleteExperience =(id) =>dispatch =>{
     );
 }
 
+//delete education from the id
+export const DeleteEducation =(id) =>dispatch =>{
+    axios.delete(`/api/profile/education/${id}`)
+    .then(res =>
+        dispatch({
+            type:GET_PROFILE,
+            payload:res.data
+        })
+    )
+    .catch(err =>
+        dispatch({
+            type:GET_ERRORS,
+            payload:err.response.data
+        })
+    );
+}
 
 
 
@@ -90,6 +106,22 @@ export const deleteAccount = () => dispatch =>{
                 })
             );
     }
+};
+
+//get all profiles
+export const getProfiles = () => dispatch => {
+    axios.get('/api/profiles/all')
+    .then(res =>dispatch({
+        type:GET_PROFILES,
+        payload:res.data  
+        })
+    )
+    .catch(err =>
+        dispatch({
+            type:GET_PROFILES,
+            payload:null
+        })
+        );
 };
 
 
