@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {getCurrentProfile, deleteAccount} from '../../actions/profileActions';
 import Spinner from '../common/Spinner';
 import Profileactions from './profileactions';
+import Experience from './Experience';
 
 class Dashboard extends Component {
 
@@ -36,6 +37,7 @@ DeleteHandler =(e) =>{
                 </p>
 
                 <Profileactions />
+                <Experience experience={profile.experience} />
 
                 <div style={{ marginBottom: '60px' }} />
                 <button onClick={ this.DeleteHandler.bind(this) } 
