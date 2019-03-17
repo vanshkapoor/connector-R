@@ -4,6 +4,7 @@ import {Link,withRouter} from 'react-router-dom';
 import Textfield from '../common/textfield';
 import Textarea from '../common/textarea';
 import PropTypes from 'prop-types';
+import { addExperience } from '../../actions/profileActions';
 
 
 class Addexperience extends Component {
@@ -38,7 +39,27 @@ class Addexperience extends Component {
 
   onSubmit = (e) =>{
     e.preventDefault();
+    const expdata = {
+        company:this.state.company,
+        title:this.state.title,
+        from:this.state.from,
+        to:this.state.to,
+        location:this.state.location,
+        current:this.state.current,
+        description:this.state.description,
+    };
+
+    this.props.addExperience(expdata,this.props.history);
+
 }
+
+componentWillReceiveProps(nextProps)
+{
+    if(nextProps.errors){
+        this.setState({errors :nextProps.errors});
+    }
+}
+
 
 
   render() {
@@ -128,7 +149,8 @@ class Addexperience extends Component {
 
 Addexperience.propTypes ={
     profile:PropTypes.object.isRequired,
-    errors:PropTypes.object.isRequired
+    errors:PropTypes.object.isRequired,
+    addExperience:PropTypes.func.isRequired
 }
 
 
@@ -137,4 +159,4 @@ const mapStateToProps = state =>({
     errors:state.errors
 })
 
-export default connect(mapStateToProps)(withRouter(Addexperience));
+export default connect(mapStateToProps,{addExperience})(withRouter(Addexperience));
