@@ -110,7 +110,7 @@ export const deleteAccount = () => dispatch =>{
 
 //get all profiles
 export const getProfiles = () => dispatch => {
-    axios.get('/api/profiles/all')
+    axios.get('/api/profile/all')
     .then(res =>dispatch({
         type:GET_PROFILES,
         payload:res.data  
@@ -123,6 +123,25 @@ export const getProfiles = () => dispatch => {
         })
         );
 };
+
+
+//get profile by handle
+export const getprofileByHandle =(handle) =>dispatch =>{
+    axios.get(`/api/profile/handle/${handle}`)
+        .then(res =>
+            dispatch({
+                type: GET_PROFILE,
+                payload: res.data
+            })
+        )
+        .catch(err =>
+            dispatch({
+                type:GET_PROFILE,
+                payload:null
+            })
+            )
+}
+
 
 
 //profile loading
