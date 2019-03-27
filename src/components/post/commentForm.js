@@ -72,7 +72,7 @@ import {addComment} from '../../actions/postActions';
 }
 
 CommentForm.propTypes={
-    addPost:PropTypes.func.isRequired,
+    addComment:PropTypes.func.isRequired,
     auth:PropTypes.object.isRequired,
     postId:PropTypes.string.isRequired,   
     errors:PropTypes.object.isRequired

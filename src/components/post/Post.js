@@ -6,6 +6,7 @@ import {getPost} from '../../actions/postActions';
 import PostItem from '../posts/PostItem';
 import {Link} from 'react-router-dom';
 import CommentForm from './commentForm';
+import Commentfeed from './commentfeed';
 
 class Post extends Component {
 
@@ -26,6 +27,7 @@ render() {
             <div>
                 <PostItem post={post} showActions={false} />
                 <CommentForm postId={post._id} />
+                <Commentfeed postId={post._id} comments={post.comments} />
             </div>
         )
     }
@@ -34,7 +36,7 @@ render() {
       <div className="post">
         <div className="container">
             <div className="row">
-                <div className="col-mmd-12">
+                <div className="col-md-12">
                     <Link to="/feed" className="btn btn-light mb-3">
                     Back to feed
                     </Link>
